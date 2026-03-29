@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ingredients")
+@RequestMapping("/api/inventory")
 @CrossOrigin(originPatterns = {"http://localhost:5173", "http://127.0.0.1:5173"})
-public class IngredientController {
+public class PantryController {
 
     private final IngredientRepository ingredientRepository;
 
-    public IngredientController(IngredientRepository ingredientRepository) {
+    public PantryController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
     @GetMapping
-    public List<IngredientDto> list() {
+    public List<IngredientDto> getInventory() {
         return ingredientRepository.findAll().stream()
                 .map(IngredientDto::fromEntity)
                 .toList();

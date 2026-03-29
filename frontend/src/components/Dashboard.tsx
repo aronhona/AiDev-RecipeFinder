@@ -20,46 +20,18 @@ const COLUMN_LABEL: Record<StorageCategory, string> = {
 const COLUMN_ORDER: StorageCategory[] = ['FRIDGE', 'FREEZER', 'DRY']
 
 const SAMPLE: IngredientRow[] = [
-  {
-    id: 1,
-    name: 'Whole milk',
-    category: 'FRIDGE',
-    quantity: 1,
-    unit: 'L',
-    expiryDate: '2026-04-15',
-  },
-  {
-    id: 2,
-    name: 'Eggs',
-    category: 'FRIDGE',
-    quantity: 12,
-    unit: 'each',
-    expiryDate: '2026-04-10',
-  },
-  {
-    id: 3,
-    name: 'All-purpose flour',
-    category: 'DRY',
-    quantity: 2,
-    unit: 'kg',
-    expiryDate: null,
-  },
-  {
-    id: 4,
-    name: 'Butter',
-    category: 'FRIDGE',
-    quantity: 250,
-    unit: 'g',
-    expiryDate: '2026-05-01',
-  },
-  {
-    id: 5,
-    name: 'Frozen peas',
-    category: 'FREEZER',
-    quantity: 500,
-    unit: 'g',
-    expiryDate: '2026-12-31',
-  },
+  { id: 1, name: 'Whole milk', category: 'FRIDGE', quantity: 1, unit: 'L', expiryDate: '2026-04-15' },
+  { id: 2, name: 'Eggs', category: 'FRIDGE', quantity: 12, unit: 'each', expiryDate: '2026-04-10' },
+  { id: 3, name: 'All-purpose flour', category: 'DRY', quantity: 2, unit: 'kg', expiryDate: null },
+  { id: 4, name: 'Butter', category: 'FRIDGE', quantity: 250, unit: 'g', expiryDate: '2026-05-01' },
+  { id: 5, name: 'Frozen peas', category: 'FREEZER', quantity: 500, unit: 'g', expiryDate: '2026-12-31' },
+  { id: 6, name: 'Greek yogurt', category: 'FRIDGE', quantity: 4, unit: 'cups', expiryDate: '2026-04-02' },
+  { id: 7, name: 'Cheddar cheese', category: 'FRIDGE', quantity: 400, unit: 'g', expiryDate: '2026-04-20' },
+  { id: 8, name: 'Vanilla ice cream', category: 'FREEZER', quantity: 1, unit: 'L', expiryDate: '2026-08-01' },
+  { id: 9, name: 'Frozen mixed berries', category: 'FREEZER', quantity: 400, unit: 'g', expiryDate: '2027-01-15' },
+  { id: 10, name: 'Basmati rice', category: 'DRY', quantity: 1.5, unit: 'kg', expiryDate: null },
+  { id: 11, name: 'Spaghetti', category: 'DRY', quantity: 500, unit: 'g', expiryDate: null },
+  { id: 12, name: 'Olive oil', category: 'DRY', quantity: 750, unit: 'ml', expiryDate: '2026-11-30' },
 ]
 
 function groupByCategory(rows: IngredientRow[]) {
@@ -81,7 +53,7 @@ export function Dashboard() {
     let cancelled = false
     ;(async () => {
       try {
-        const res = await fetch('/api/ingredients')
+        const res = await fetch('/api/inventory')
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const data: IngredientRow[] = await res.json()
         if (!cancelled) {
